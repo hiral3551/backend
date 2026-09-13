@@ -4,22 +4,56 @@ import connectDB from "./db/index.js";
 
 dotenv.config({
     path: "./.env",
-});
+})
 
-const PORT = process.env.PORT || 8000;
 
-const startServer = async () => {
-    await connectDB();
 
-    app.listen(PORT, () => {
-        console.log(`App is listening on port ${PORT}`);
-    });
-};
+connectDB()
 
-startServer().catch((error) => {
-    console.error("Failed to start server:", error);
-    process.exit(1);
-});
+.then(()=>{
+    app.listen(process.env.PORT || 9000,()=>{
+      console.log(`server is running at port: 
+        ${process.env.PORT}`)  
+    })
+})
+.catch((err)=>{
+    console.log("mongodb connection failed",err)
+})
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// const PORT = process.env.PORT || 8000;
+
+// const startServer = async () => {
+//     await connectDB();
+
+//     app.listen(PORT, () => {
+//         console.log(`App is listening on port ${PORT}`);
+//     });
+// };
+
+// startServer().catch((error) => {
+//     console.error("Failed to start server:", error);
+//     process.exit(1);
+// });
 
 
 

@@ -1,12 +1,16 @@
-import express from "express";
+import express from "express"
+import cors from "cors"
+import cookieParser from "cookie-parser"
 
-const app = express();
 
-app.use(express.json({ limit: "16kb" }));
-app.use(express.urlencoded({ extended: true }));
+const app =express()
 
-app.get("/health", (req, res) => {
-    res.status(200).json({ status: "ok" });
-});
+app.use(cors({
+    origin:process.env.CORS_ORIGIN,
+    credientials:true
+}))
 
-export default app;
+app.use(express.json({limit:"16kb"}))
+app.use(cookieParser())
+
+export {app}
